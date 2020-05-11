@@ -1,7 +1,7 @@
 - layout: top-middle
   name: Ritam - ऋतं
   link: https://play.google.com/store/apps/details?id=com.therightnowapp.rightnow&hl=en_IN
-  #github: sproogen/resume-theme
+  #github: govindbhardwaj/govindbhardwaj.github.io
   quote: >
     <strong>Ritam - ऋतं, An App designed to bring to you All that you need to Know, Read and Share</strong>
   description: | # this will include new lines to allow paragraphs
@@ -11,7 +11,7 @@
 - layout: top-middle
   name: Invest Haryana (HEPC)
   link: https://investharyana.in/#/
-  #github: sproogen/resume-theme
+  #github: govindbhardwaj/govindbhardwaj.github.io
   quote: >
     <strong>Ranks 3rd in Ease of Doing Business in India</strong>
   description: | # this will include new lines to allow paragraphs
@@ -21,7 +21,7 @@
 - layout: top-middle
   name: The Hacker News
   link: https://play.google.com/store/apps/details?id=com.devopshive.hackernews&hl=en_IN
-  #github: sproogen/resume-theme
+  #github: govindbhardwaj/govindbhardwaj.github.io
   quote: >
     <strong>Serverless Hacker News client with a very powerful user-friendly interface.</strong>
   description: | # this will include new lines to allow paragraphs
