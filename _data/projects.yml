@@ -1,8 +1,30 @@
 - layout: top-middle
-  name: Super awesome project
-  link: github.com/sproogen
-  github: sproogen/resume-theme
+  name: Ritam - ऋतं
+  link: https://play.google.com/store/apps/details?id=com.therightnowapp.rightnow&hl=en_IN
+  #github: sproogen/resume-theme
   quote: >
-    This is probably one of the greatest apps ever created, if you don't agree you're probably wrong.
+    <strong>Ritam - ऋतं, An App designed to bring to you All that you need to Know, Read and Share</strong>
   description: | # this will include new lines to allow paragraphs
-    I started this project as a way if learning <mark>React</mark> and it has since grown into a fully fledged app. I have learned many skills through this and been I'm very proud of having this in my portfolio. If you don't have a project as awesome as this I would advise you make one.
+    Owned by Ritam Digital Media Foundation, it has about 400K monthly (Android and iOS) active users worldwide. It is a fully automated news aggregation application from various platforms including social media. Mainly it is the application of The Right Wing.
+    
+    Technologies: <mark>Flutter</mark> <mark>SpringBoot</mark>
+- layout: top-middle
+  name: Invest Haryana (HEPC)
+  link: https://investharyana.in/#/
+  #github: sproogen/resume-theme
+  quote: >
+    <strong>Ranks 3rd in Ease of Doing Business in India</strong>
+  description: | # this will include new lines to allow paragraphs
+    HEPC are inspired by a goal to make Haryana the most investor friendly destination in India. With rapidly growing investment opportunities and technological advancements, the Government of Haryana conceptualized the idea of implementing an online platform i.e. a Single Roof Clearance System which ensures a time bound, hassle free and transparent system of clearances to give our investors a one stop solution for any service to enhance the ease of doing business in the State.
+
+    Technologies: <mark>AngularJS</mark> <mark>SpringBoot</mark> <mark>Cassandra</mark> <mark>Minio</mark>
+- layout: top-middle
+  name: The Hacker News
+  link: https://play.google.com/store/apps/details?id=com.devopshive.hackernews&hl=en_IN
+  #github: sproogen/resume-theme
+  quote: >
+    <strong>Serverless Hacker News client with a very powerful user-friendly interface.</strong>
+  description: | # this will include new lines to allow paragraphs
+    It is a serverless Hacker News API client developed for DevOpsHive Inc. as a hobby project. It serves the data from the Hacker News API provided by Y Combinator.
+
+    Technologies: <mark>Flutter</mark> <mark>Firebase</mark>
