@@ -1,8 +1,17 @@
 - layout: left
+  company: Altimetrik India Pvt Ltd, India
+  link: https://altimetrik.com/
+  job_title: Product and Platform Engineer
+  dates: Jan 2022 - Present
+  quote: >
+    Altimetrik provides world-class business solutions with a vibrant culture and a steadfast dedication to our communities.
+  description: | # this will include new lines to allow paragraphs
+    Working fulltime with Airbnb USA team and helping them to create and maintain a reliable staging environment for more than 70 microservices of payments engineering team. It includes monitoring and debugging all sorts of environment issues together.
+- layout: left
   company: HSEDC, India
   link: https://hartronservices.com/
   job_title: DevOps Lead
-  dates: Jan 2021 - Present
+  dates: Jan 2021 - Jan 2022
   quote: >
     Haryana State Electronics Development Corporation (HARTRON) is a state government owned information technology and services company based out of Jan Marg, Chandigarh, Chandigarh, India.
   description: | # this will include new lines to allow paragraphs

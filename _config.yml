@@ -26,7 +26,7 @@ about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
   Hi, my name's Govind and I'm a full-stack developer and orchestration engineer. As well as developing and orchestrating softwares I also have experience making software and web apps secure. I have worked at a number of companies gaining teamwork and leadership skills.
 
-  I am most skilled in: <mark>Jenkins</mark> <mark>Docker</mark> <mark>Flutter</mark> and <mark>JHipster</mark>
+  I am most skilled in: <mark>AWS</mark> <mark>Docker</mark> <mark>Jenkins</mark> <mark>Java</mark> <mark>Springboot</mark> and <mark>JHipster</mark>
 
 # Projects Section
 # projects_title: Projects
