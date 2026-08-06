@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Govind Bhardwaj — Full-Stack DevOps Engineer</title>
+<meta name="description" content="Govind Bhardwaj — Full-Stack DevOps Engineer. Building and securing software, cloud infrastructure and web apps.">
+<style>
+  /* ---------- Config: edit these two values to re-theme the site ---------- */
+  :root {
+    --accent: #8FE388;   /* alternates used in the original design: #7DD3FC, #FCA5A5, #FCD34D */
+  }
+  /* Set to "none" to hide the hero stats row, "flex" to show it. */
+  #stats { display: flex; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #0b0c0e;
+    color: #ededed;
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    width: 100%;
+  }
+  ::selection { background: var(--accent); color: #0b0c0e; }
+  a { text-decoration: none; }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding-left: 48px; padding-right: 48px; }
+
+  /* Nav */
+  .navbar {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(11,12,14,0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; }
+  .nav-logo {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--accent); color: #0b0c0e;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+  }
+  .nav-sitename { font-size: 14px; color: #8a8f98; letter-spacing: 0.02em; }
+  .nav-links {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px; padding: 6px;
+  }
+  .nav-link {
+    color: #ededed; font-size: 13px; padding: 8px 16px; border-radius: 999px;
+  }
+  .nav-link:hover { background: rgba(255,255,255,0.08); }
+
+  /* Hero */
+  .hero {
+    min-height: 88vh;
+    display: flex; flex-direction: column; justify-content: center;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--accent); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .hero-greet { font-size: 22px; color: #8a8f98; margin-bottom: 8px; }
+  .hero-name {
+    font-size: clamp(48px,7vw,96px); font-weight: 800; line-height: 1.02;
+    margin: 0 0 20px; letter-spacing: -0.02em;
+  }
+  .hero-role { font-size: 20px; color: #c7cbd1; margin-bottom: 6px; }
+  .hero-desc { font-size: 16px; color: #8a8f98; max-width: 560px; line-height: 1.6; margin-bottom: 36px; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
+  .btn-primary {
+    background: var(--accent); color: #0b0c0e; padding: 14px 28px;
+    border-radius: 999px; font-weight: 600; font-size: 14px;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary {
+    border: 1px solid rgba(255,255,255,0.15); color: #ededed;
+    padding: 14px 28px; border-radius: 999px; font-weight: 600; font-size: 14px;
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.4); }
+  .hero-connect { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .connect-label { color: #8a8f98; font-size: 13px; }
+  .connect-link {
+    color: #c7cbd1; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .connect-link:hover { color: var(--accent); }
+
+  #stats {
+    gap: 56px; margin-top: 64px; padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap;
+  }
+  .stat-num { font-size: 32px; font-weight: 800; color: var(--accent); }
+  .stat-label { font-size: 13px; color: #8a8f98; }
+
+  /* Section shared */
+  section { padding: 60px 48px 100px; }
+  .hero { padding: 0 48px; }
+  #about { padding: 100px 48px; }
+  .eyebrow {
+    color: var(--accent); font-size: 13px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;
+  }
+  h2.section-title { font-size: 36px; font-weight: 800; margin: 0 0 40px; }
+  #about h2.section-title { margin-bottom: 28px; }
+  #education h2.section-title { margin-bottom: 32px; }
+  #contact h2.section-title { margin-bottom: 20px; }
+  #contact { padding-bottom: 120px; }
+
+  /* About */
+  .about-p1 { font-size: 17px; line-height: 1.8; color: #c7cbd1; max-width: 760px; margin: 0 0 20px; }
+  .about-p2 { font-size: 15px; line-height: 1.8; color: #8a8f98; max-width: 760px; margin: 0 0 32px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    color: #ededed; font-size: 13px; padding: 8px 16px; border-radius: 999px;
+  }
+  .chip-icon {
+    width: 16px; height: 16px; background-color: #ededed;
+    -webkit-mask-size: contain; mask-size: contain;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: center; mask-position: center;
+    flex-shrink: 0;
+  }
+
+  /* Skills */
+  .skill-group { margin-bottom: 28px; }
+  .skill-group-label { font-size: 13px; color: #8a8f98; font-weight: 600; margin-bottom: 12px; }
+  .skill-chip-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skill-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    color: #ededed; font-size: 14px; padding: 10px 18px; border-radius: 10px;
+  }
+  .skill-chip:hover { border-color: var(--accent); }
+  .skill-icon {
+    width: 18px; height: 18px; background-color: #ededed;
+    -webkit-mask-size: contain; mask-size: contain;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: center; mask-position: center;
+    flex-shrink: 0;
+  }
+  .icon-security {
+    width: 18px; height: 18px; background: var(--accent); flex-shrink: 0;
+    clip-path: polygon(50% 0%, 100% 20%, 100% 60%, 50% 100%, 0% 60%, 0% 20%);
+  }
+  .icon-monitoring {
+    width: 18px; height: 18px; display: flex; align-items: flex-end; gap: 2px; flex-shrink: 0;
+  }
+  .icon-monitoring span { width: 4px; background: var(--accent); }
+  .icon-monitoring span:nth-child(1) { height: 60%; }
+  .icon-monitoring span:nth-child(2) { height: 100%; }
+  .icon-monitoring span:nth-child(3) { height: 40%; }
+  .icon-leadership { width: 22px; height: 18px; position: relative; flex-shrink: 0; }
+  .icon-leadership span { position: absolute; border-radius: 50%; background: var(--accent); }
+  .icon-leadership span:nth-child(1) { left: 0; top: 2px; width: 12px; height: 12px; opacity: 0.55; }
+  .icon-leadership span:nth-child(2) { left: 8px; top: 0; width: 14px; height: 14px; }
+
+  /* Projects */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap: 20px; }
+  .project-card {
+    display: block; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 28px; color: #ededed;
+  }
+  .project-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.05); }
+  .project-name { font-size: 19px; font-weight: 700; margin-bottom: 8px; }
+  .project-desc { font-size: 14px; color: #8a8f98; line-height: 1.6; margin-bottom: 16px; min-height: 64px; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tech-tag { font-size: 11px; color: var(--accent); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px; }
+
+  /* Experience */
+  .experience-item {
+    display: grid; grid-template-columns: 160px 1fr; gap: 24px;
+    padding: 28px 0; border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .exp-date-wrap { padding-top: 2px; }
+  .exp-date {
+    display: inline-block; font-size: 12px; font-weight: 600; color: var(--accent);
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 999px; padding: 6px 14px; letter-spacing: 0.02em; white-space: nowrap;
+  }
+  .exp-role { font-size: 18px; font-weight: 700; }
+  .exp-company { font-size: 14px; color: var(--accent); margin-bottom: 10px; }
+  .exp-summary { font-size: 14px; color: #8a8f98; line-height: 1.7; max-width: 640px; }
+
+  /* Education */
+  .education-card {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 32px;
+  }
+  .edu-title { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+  .edu-school { font-size: 14px; color: var(--accent); margin-bottom: 6px; }
+  .edu-years { font-size: 13px; color: #8a8f98; margin-bottom: 16px; }
+  .edu-desc { font-size: 14px; color: #c7cbd1; line-height: 1.7; }
+
+  /* Contact */
+  .contact-desc { font-size: 16px; color: #8a8f98; max-width: 560px; line-height: 1.7; margin-bottom: 36px; }
+  .contact-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .contact-email {
+    background: var(--accent); color: #0b0c0e; padding: 14px 28px;
+    border-radius: 999px; font-weight: 600; font-size: 14px;
+  }
+  .contact-email:hover { opacity: 0.85; }
+  .contact-links { display: flex; gap: 14px; }
+  .contact-link { color: #c7cbd1; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .contact-link:hover { color: var(--accent); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.08); padding: 40px 48px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-text { font-size: 13px; color: #8a8f98; }
+
+  @media (max-width: 640px) {
+    .navbar { padding: 14px 20px; }
+    .wrap, section, .hero { padding-left: 20px; padding-right: 20px; }
+    .nav-sitename { display: none; }
+  }
+</style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nav-logo">GB</div>
+      <span class="nav-sitename">govindbhardwaj.dev</span>
+    </div>
+    <div class="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero wrap">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Building Reliable Systems
+    </div>
+    <div class="hero-greet">Hi, I'm</div>
+    <h1 class="hero-name">Govind<br>Bhardwaj</h1>
+    <div class="hero-role">Full-Stack DevOps Engineer</div>
+    <div class="hero-desc">
+      Full-stack developer and orchestration engineer building and securing software, cloud infrastructure and web apps.
+    </div>
+    <div class="hero-cta">
+      <a href="mailto:govindbhardwaj@outlook.com" class="btn-primary">Get in Touch</a>
+      <a href="https://github.com/govindbhardwaj" class="btn-secondary">View GitHub</a>
+    </div>
+    <div class="hero-connect">
+      <span class="connect-label">Connect:</span>
+      <a href="https://github.com/govindbhardwaj" class="connect-link">GitHub</a>
+      <a href="https://www.linkedin.com/in/govindbhardwaj" class="connect-link">LinkedIn</a>
+      <a href="https://twitter.com/kumargovind88" class="connect-link">Twitter</a>
+    </div>
+    <div id="stats">
+      <div>
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">70+</div>
+        <div class="stat-label">Microservices Managed</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Companies</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <div class="eyebrow">01&nbsp;&nbsp;About</div>
+    <h2 class="section-title">A Little About Me</h2>
+    <p class="about-p1">
+      Hi, I'm Govind, a full-stack developer and orchestration engineer. Alongside developing and orchestrating software, I've built experience securing software and web apps, and worked across a number of companies gaining teamwork and leadership skills.
+    </p>
+    <p class="about-p2">
+      Outside of engineering, I spend my time playing guitar and flute, blogging, and gardening.
+    </p>
+    <div class="chip-row">
+      <span class="chip"><span class="chip-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/amazonaws.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/amazonaws.svg);"></span>AWS</span>
+      <span class="chip"><span class="chip-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/docker.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/docker.svg);"></span>Docker</span>
+      <span class="chip"><span class="chip-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/jenkins.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/jenkins.svg);"></span>Jenkins</span>
+      <span class="chip"><span class="chip-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/openjdk.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/openjdk.svg);"></span>Java</span>
+      <span class="chip"><span class="chip-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/spring.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/spring.svg);"></span>Spring Boot</span>
+      <span class="chip"><span class="chip-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/jhipster.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/jhipster.svg);"></span>JHipster</span>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="eyebrow">02&nbsp;&nbsp;Technical Expertise</div>
+    <h2 class="section-title">Skills &amp; Technologies</h2>
+
+    <div class="skill-group">
+      <div class="skill-group-label">Cloud &amp; DevOps (5)</div>
+      <div class="skill-chip-row">
+        <span class="skill-chip"><span class="skill-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/amazonaws.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/amazonaws.svg);"></span>AWS</span>
+        <span class="skill-chip"><span class="skill-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/docker.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/docker.svg);"></span>Docker</span>
+        <span class="skill-chip"><span class="skill-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/jenkins.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/jenkins.svg);"></span>Jenkins</span>
+        <span class="skill-chip"><span class="skill-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/minio.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/minio.svg);"></span>Minio</span>
+        <span class="skill-chip"><span class="skill-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/apachecassandra.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/apachecassandra.svg);"></span>Cassandra</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-label">Backend (4)</div>
+      <div class="skill-chip-row">
+        <span class="skill-chip"><span class="skill-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/openjdk.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/openjdk.svg);"></span>Java</span>
+        <span class="skill-chip"><span class="skill-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/spring.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/spring.svg);"></span>Spring Boot</span>
+        <span class="skill-chip"><span class="skill-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/jhipster.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/jhipster.svg);"></span>JHipster</span>
+        <span class="skill-chip"><span class="skill-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/firebase.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/firebase.svg);"></span>Firebase</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-label">Frontend (2)</div>
+      <div class="skill-chip-row">
+        <span class="skill-chip"><span class="skill-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/angularjs.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/angularjs.svg);"></span>AngularJS</span>
+        <span class="skill-chip"><span class="skill-icon" style="-webkit-mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/flutter.svg); mask-image:url(https://cdn.jsdelivr.net/npm/simple-icons@9/icons/flutter.svg);"></span>Flutter</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-label">Practices (3)</div>
+      <div class="skill-chip-row">
+        <span class="skill-chip"><span class="icon-security"></span>Security Hardening</span>
+        <span class="skill-chip"><span class="icon-monitoring"><span></span><span></span><span></span></span>Monitoring</span>
+        <span class="skill-chip"><span class="icon-leadership"><span></span><span></span></span>Team Leadership</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap">
+    <div class="eyebrow">03&nbsp;&nbsp;Selected Work</div>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <a href="https://www.airbnb.com" class="project-card" target="_blank" rel="noopener">
+        <div class="project-name">Airbnb</div>
+        <div class="project-desc">Helped maintain a reliable cloud environment for 70+ microservices in the payments engineering org.</div>
+        <div class="project-tech"><span class="tech-tag">AWS</span><span class="tech-tag">Java</span></div>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.therightnowapp.rightnow&hl=en_IN" class="project-card" target="_blank" rel="noopener">
+        <div class="project-name">Ritam</div>
+        <div class="project-desc">Fully automated news aggregation app with about 400K monthly active users across Android and iOS.</div>
+        <div class="project-tech"><span class="tech-tag">Flutter</span><span class="tech-tag">SpringBoot</span></div>
+      </a>
+      <a href="https://investharyana.in/#/" class="project-card" target="_blank" rel="noopener">
+        <div class="project-name">Invest Haryana (HEPC)</div>
+        <div class="project-desc">Single Roof Clearance platform ranked 3rd in Ease of Doing Business in India.</div>
+        <div class="project-tech"><span class="tech-tag">AngularJS</span><span class="tech-tag">SpringBoot</span><span class="tech-tag">Cassandra</span><span class="tech-tag">Minio</span></div>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.devopshive.hackernews&hl=en_IN" class="project-card" target="_blank" rel="noopener">
+        <div class="project-name">The Hacker News</div>
+        <div class="project-desc">Serverless Hacker News client with a user-friendly interface, built as a hobby project.</div>
+        <div class="project-tech"><span class="tech-tag">Flutter</span><span class="tech-tag">Firebase</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="eyebrow">04&nbsp;&nbsp;Career</div>
+    <h2 class="section-title">Experience</h2>
+    <div>
+      <div class="experience-item">
+        <div class="exp-date-wrap"><span class="exp-date">Jan 2022 – Aug 2025</span></div>
+        <div>
+          <div class="exp-role">Product and Platform Engineer</div>
+          <div class="exp-company">Altimetrik India Pvt Ltd</div>
+          <div class="exp-summary">Worked full-time with Airbnb USA payments engineering team, maintaining a reliable cloud environment for 70+ microservices, monitoring and debugging environment issues together.</div>
+        </div>
+      </div>
+      <div class="experience-item">
+        <div class="exp-date-wrap"><span class="exp-date">Jan 2021 – Jan 2022</span></div>
+        <div>
+          <div class="exp-role">DevOps Lead</div>
+          <div class="exp-company">HSEDC (HARTRON), India</div>
+          <div class="exp-summary">Led the DevOps division, created orchestration processes, and implemented server-side security and monitoring tools.</div>
+        </div>
+      </div>
+      <div class="experience-item">
+        <div class="exp-date-wrap"><span class="exp-date">Jan 2020 – Dec 2020</span></div>
+        <div>
+          <div class="exp-role">DevOps and Full-Stack Developer</div>
+          <div class="exp-company">SRIT, India</div>
+          <div class="exp-summary">Maintained cloud infrastructure and worked on establishing a visionary data center for India while securing infrastructure from cyber threats.</div>
+        </div>
+      </div>
+      <div class="experience-item">
+        <div class="exp-date-wrap"><span class="exp-date">Jul 2017 – Jan 2020</span></div>
+        <div>
+          <div class="exp-role">Full-Stack Developer</div>
+          <div class="exp-company">HSEDC (HARTRON), India</div>
+          <div class="exp-summary">Administered company networks and led a team of 4, driving adoption of new technologies and tools.</div>
+        </div>
+      </div>
+      <div class="experience-item">
+        <div class="exp-date-wrap"><span class="exp-date">2016</span></div>
+        <div>
+          <div class="exp-role">Intern</div>
+          <div class="exp-company">DRDO, India</div>
+          <div class="exp-summary">Selected for the DRDO summer training program; worked with respected scientists and earned a certificate for an independent project.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="wrap">
+    <div class="eyebrow">05&nbsp;&nbsp;Background</div>
+    <h2 class="section-title">Education</h2>
+    <div class="education-card">
+      <div class="edu-title">B.Tech, Computer Science and Engineering</div>
+      <div class="edu-school">Guru Jambheshwar University of Science &amp; Technology, Hisar</div>
+      <div class="edu-years">2013 - 2017</div>
+      <div class="edu-desc">Learned the fundamentals of teamwork and working to tight deadlines. Served as a committee member of the GJUST Devs Club, taking on roles such as Manager and Instructor.</div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="eyebrow">06&nbsp;&nbsp;Let's Work Together</div>
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="contact-desc">
+      Have a project in mind or just want to chat? I'm always open to discussing new opportunities, DevOps challenges, or collaborations.
+    </p>
+    <div class="contact-row">
+      <a href="mailto:govindbhardwaj@outlook.com" class="contact-email">govindbhardwaj@outlook.com</a>
+      <div class="contact-links">
+        <a href="https://github.com/govindbhardwaj" class="contact-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/govindbhardwaj" class="contact-link">LinkedIn</a>
+        <a href="https://twitter.com/kumargovind88" class="contact-link">Twitter</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-text">(c) 2026 Govind Bhardwaj</div>
+    <div class="footer-text">References on request</div>
+  </footer>
+
+</body>
+</html>
