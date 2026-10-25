@@ -1,0 +1,188 @@
+/* Shared styles for /privacy-policy/ and /delete-account/. Mirrors the homepage look. */
+:root {
+  --accent: #8FE388;
+  --bg: #0b0c0e;
+  --text: #ededed;
+  --text-2: #c7cbd1;
+  --muted: #8a8f98;
+  --line: rgba(255,255,255,0.08);
+  --surface: rgba(255,255,255,0.03);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+::selection { background: var(--accent); color: var(--bg); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Nav */
+.navbar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 18px 48px;
+  background: rgba(11,12,14,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; color: var(--text); }
+.nav-brand:hover { text-decoration: none; }
+.nav-logo {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--accent); color: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px; flex-shrink: 0;
+}
+.nav-sitename { font-size: 14px; color: var(--muted); letter-spacing: 0.02em; }
+.nav-links {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  border-radius: 999px; padding: 6px;
+}
+.nav-link { color: var(--text); font-size: 13px; padding: 8px 16px; border-radius: 999px; }
+.nav-link:hover { background: rgba(255,255,255,0.08); text-decoration: none; }
+.nav-link[aria-current="page"] { background: rgba(255,255,255,0.08); color: var(--accent); }
+
+/* Page header */
+.legal-header { max-width: 1100px; margin: 0 auto; padding: 72px 48px 48px; }
+.eyebrow {
+  color: var(--accent); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;
+}
+.legal-title {
+  font-size: clamp(36px, 5vw, 56px); font-weight: 800; line-height: 1.05;
+  letter-spacing: -0.02em; margin: 0 0 18px;
+}
+.legal-lede { font-size: 17px; color: var(--text-2); max-width: 720px; line-height: 1.7; margin: 0 0 22px; }
+.legal-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.meta-pill {
+  font-size: 12px; font-weight: 600; color: var(--muted);
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 999px; padding: 6px 14px;
+}
+.meta-pill strong { color: var(--text); font-weight: 600; }
+
+/* At a glance */
+.glance { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 40px; }
+.glance-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; }
+.glance-card h3 { display: flex; align-items: center; gap: 10px; font-size: 15px; margin: 0 0 6px; }
+.glance-card h3::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+.glance-card p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+/* Two-column layout with sticky contents */
+.legal-layout {
+  max-width: 1100px; margin: 0 auto; padding: 0 48px 100px;
+  display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 56px; align-items: start;
+}
+.legal-layout.single { grid-template-columns: minmax(0, 1fr); }
+.toc { position: sticky; top: 96px; max-height: calc(100vh - 120px); overflow-y: auto; }
+.toc summary {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px; list-style: none; pointer-events: none;
+}
+.toc summary::-webkit-details-marker { display: none; }
+.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+.toc li { counter-increment: toc; }
+.toc a { display: flex; gap: 10px; font-size: 13px; line-height: 1.4; color: var(--muted); padding: 6px 0; }
+.toc a::before { content: counter(toc, decimal-leading-zero); color: rgba(255,255,255,0.5); font-variant-numeric: tabular-nums; }
+.toc a:hover { color: var(--text); text-decoration: none; }
+
+/* Prose */
+.prose { max-width: 720px; font-size: 16px; line-height: 1.75; color: var(--text-2); }
+.prose section { margin: 0 0 56px; }
+.prose h2 {
+  display: flex; align-items: baseline; gap: 12px;
+  font-size: 26px; font-weight: 800; letter-spacing: -0.01em; color: var(--text); margin: 0 0 18px;
+}
+.prose h2 .num { color: var(--accent); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.prose h3 { font-size: 18px; color: var(--text); margin: 32px 0 10px; }
+.prose p { margin: 0 0 16px; }
+.prose ul, .prose ol { margin: 0 0 16px; padding-left: 22px; }
+.prose li { margin-bottom: 8px; }
+.prose li::marker { color: var(--accent); }
+.prose strong { color: var(--text); }
+.callout {
+  background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+  border-radius: 12px; padding: 16px 20px; margin: 0 0 20px; font-size: 15px;
+}
+.callout p:last-child { margin-bottom: 0; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; margin: 0 0 20px; border: 1px solid var(--line); border-radius: 12px; }
+table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 14px; line-height: 1.55; }
+th, td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+th { color: var(--text); font-weight: 600; font-size: 13px; background: rgba(255,255,255,0.04); }
+td:first-child { color: var(--text); font-weight: 500; }
+tr:last-child td { border-bottom: 0; }
+
+/* Delete-account page */
+.option-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 0 0 24px; }
+.option-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+.option-card h3 { margin-top: 0; }
+.steps { list-style: none; counter-reset: step; padding: 0 !important; margin: 0 0 20px; }
+.steps li { counter-increment: step; position: relative; padding-left: 40px; margin-bottom: 14px; }
+.steps li::before {
+  content: counter(step); position: absolute; left: 0; top: 0;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent); color: var(--bg); font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.btn-primary {
+  display: inline-block; background: var(--accent); color: var(--bg);
+  padding: 12px 24px; border-radius: 999px; font-weight: 600; font-size: 14px;
+}
+.btn-primary:hover { opacity: 0.85; text-decoration: none; }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--line); padding: 40px 48px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.footer-text { font-size: 13px; color: var(--muted); }
+.footer-text a { color: var(--text-2); }
+.footer-text a:hover { color: var(--accent); }
+
+@media (max-width: 900px) {
+  .legal-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .toc {
+    position: static; max-height: none;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px;
+  }
+  .toc summary { pointer-events: auto; cursor: pointer; margin: 0; }
+  .toc summary::after { content: " +"; }
+  .toc[open] summary { margin-bottom: 8px; }
+  .toc[open] summary::after { content: " \2212"; }
+}
+
+@media (max-width: 640px) {
+  .navbar { padding: 14px 16px; }
+  .nav-sitename { display: none; }
+  .nav-link { padding: 8px 12px; }
+  .legal-header { padding: 48px 16px 32px; }
+  .legal-layout { padding: 0 16px 72px; }
+  .prose h2 { font-size: 22px; }
+  footer { padding: 32px 16px; }
+}
+
+@media print {
+  body { background: #fff; color: #000; }
+  .navbar, .toc, footer, .btn-primary { display: none; }
+  .legal-layout { display: block; padding: 0; }
+  .legal-header { padding: 0 0 24px; }
+  .prose, .legal-lede, .glance-card p, .meta-pill, td, th, .prose strong, .prose h2, .prose h3, .glance-card h3 { color: #000; }
+  .glance-card, .table-wrap, .callout, .option-card, th, td, .meta-pill { background: none; border-color: #bbb; }
+  a { color: #000; text-decoration: underline; }
+  .prose section { break-inside: auto; }
+}
