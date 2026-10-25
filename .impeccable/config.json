@@ -1,0 +1,18 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "delete-account/index.html",
+          "privacy-policy/index.html"
+        ],
+        "createdAt": "2026-10-25T05:25:05.534Z",
+        "reason": "Agent: file-mode scan cannot load the external assets/legal.css, so it misses td padding (12px 16px); the rendered-page scan of both pages reports zero findings"
+      }
+    ]
+  }
+}
