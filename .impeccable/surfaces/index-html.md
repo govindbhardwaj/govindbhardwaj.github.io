@@ -31,6 +31,6 @@ STORY: The visitor sees the whole network and reads that Govind keeps platforms 
 
 FIRST VIEWPORT: The full-bleed network map sits under a white header with a colour stripe. Top-left is a black signboard with the photo, गोविंद भारद्वाज / Govind Bhardwaj and the role, followed by the hook, Email (primary) and LinkedIn. The lines converge on the Airbnb Payments interchange right of centre, and dashed extensions end at a "Next station: your team" terminus on the right edge. The line key sits top-right. Signature interaction: choosing a line in the key lights it and dims the rest. Motion: lines draw on once, and the next-station ring blinks like a carriage LED.
 
-FORM: Metro Network Map, rank 1 of 7 (Impeccable's pick, chosen by the user); seed: 56f0804dbf80cf97.
+FORM: Metro Network Map, rank 1 of 7 (Impeccable's pick, chosen by the user); seed:56f0804dbf80cf97.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

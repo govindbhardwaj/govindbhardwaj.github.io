@@ -36,7 +36,7 @@
   }
 
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+  html { scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
     background: #fff;
@@ -110,8 +110,10 @@
   .sign-photo { width: 8.2cqw; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 28%; border-radius: 4px; flex-shrink: 0; }
   .sign-body > div { min-width: 0; }
   .sign h1 { margin: 0; font-weight: 800; line-height: 1; }
-  .sign h1 .hi { display: block; font-weight: 600; font-size: clamp(16px, 1.55cqw, 26px); line-height: 1.3; color: var(--sign-2); margin-bottom: .2em; }
-  .sign h1 .en { display: block; font-size: clamp(34px, 4.3cqw, 74px); letter-spacing: -0.02em; padding-top: .08em; }
+  /* Bilingual sign: both scripts get equal billing, Hindi first, as on DMRC signage */
+  .sign h1 .hi, .sign h1 .en { display: block; font-size: clamp(26px, 3cqw, 52px); }
+  .sign h1 .hi { font-weight: 600; line-height: 1.25; }
+  .sign h1 .en { letter-spacing: -0.015em; line-height: 1.05; margin-top: .1em; }
   .sign-role { margin: .6em 0 0; font-size: clamp(14px, 1.15cqw, 19px); color: var(--sign-2); line-height: 1.35; }
   .hook { margin: 1.1em 0 0; font-size: clamp(22px, 2.15cqw, 37px); font-weight: 800; line-height: 1.12; letter-spacing: -0.015em; text-wrap: balance; }
   .sub { margin: .7em 0 1.3em; font-size: clamp(15px, 1.2cqw, 19px); color: var(--ink-2); max-width: 46ch; text-wrap: pretty; }
@@ -124,12 +126,15 @@
   .ln[data-line="green"] path { stroke: var(--green); }
   .ln[data-line="yellow"] .case { stroke: var(--yellow-case); stroke-width: 17; }
   .ln[data-line="yellow"] .solid:not(.case) { stroke: var(--yellow); stroke-width: 12; }
-  .ln .dash { stroke-dasharray: 10 12; stroke-linecap: butt; }
+  .ln .dash { stroke-dasharray: 24 10; stroke-linecap: butt; }
   .ln, .st { transition: opacity .35s var(--ease-out); }
   .stage.isolating .dim { opacity: .13; }
 
   .cap { fill: #fff; stroke: var(--ink); stroke-width: 4; }
-  .cap.major { stroke-width: 5; }
+  .cap.major { stroke-width: 6; }
+  .plate-t { font: 800 19px var(--font); fill: #fff; }
+  .plate-s { font: 400 14px var(--font); fill: var(--sign-2); }
+  .st a:hover .plate-t, .st a:focus-visible .plate-t { text-decoration: underline; }
   .cap.planned { stroke-dasharray: 6 5; stroke-width: 3; }
   .ring { fill: none; stroke: var(--blue); stroke-width: 3; opacity: 0; }
   .tick-red { fill: var(--red); }
@@ -176,29 +181,52 @@
   /* Experience: the route strip */
   .route-grid { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 64px; align-items: start; }
   .route-aside { position: sticky; top: 108px; }
+  .rail-key { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 10px; font-size: 15px; font-weight: 600; }
+  .rail-key li { display: flex; align-items: center; gap: 12px; }
+  .rail-key li::before { content: ""; width: 10px; height: 24px; border-radius: 5px; background: var(--c); }
+
+  /* Strip map: rails sit in fixed slots (Platform, Backend, Reliability, Foundations).
+     --a* are lines arriving from the stop above, --b* lines running on to the stop below;
+     a line served only at one stop ends in a short stub (--h*). */
   .route { list-style: none; margin: 0; padding: 0; }
-  .stop { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr); }
+  .stop { --k: 1; position: relative; display: grid; grid-template-columns: calc(92px * var(--k)) minmax(0, 1fr); }
   .rail { position: relative; }
+  .rail::before, .rail::after {
+    content: ""; position: absolute; left: calc(18px * var(--k)); width: calc(55px * var(--k));
+    --w: calc(10px * var(--k));
+  }
   .rail::before {
-    content: ""; position: absolute; left: 25px; top: 14px; bottom: -14px; width: 14px;
-    background: var(--c); border-radius: 7px;
+    top: 0; height: 20px;
+    background:
+      linear-gradient(var(--a1, transparent), var(--a1, transparent)) 0 0 / var(--w) 100% no-repeat,
+      linear-gradient(var(--a2, transparent), var(--a2, transparent)) calc(15px * var(--k)) 0 / var(--w) 100% no-repeat,
+      linear-gradient(var(--a3, transparent), var(--a3, transparent)) calc(30px * var(--k)) 0 / var(--w) 100% no-repeat,
+      linear-gradient(var(--a4, transparent), var(--a4, transparent)) calc(45px * var(--k)) 0 / var(--w) 100% no-repeat;
   }
-  .stop:last-child .rail::before { bottom: auto; height: 0; }
-  .node {
-    position: absolute; left: 16px; top: 8px; width: 32px; height: 32px; border-radius: 50%;
-    background: #fff; border: 4px solid var(--ink); z-index: 1;
+  .rail::after {
+    top: 20px; bottom: 0;
+    background:
+      linear-gradient(var(--b1, transparent), var(--b1, transparent)) 0 0 / var(--w) var(--h1, 100%) no-repeat,
+      linear-gradient(var(--b2, transparent), var(--b2, transparent)) calc(15px * var(--k)) 0 / var(--w) var(--h2, 100%) no-repeat,
+      linear-gradient(var(--b3, transparent), var(--b3, transparent)) calc(30px * var(--k)) 0 / var(--w) var(--h3, 100%) no-repeat,
+      linear-gradient(var(--b4, transparent), var(--b4, transparent)) calc(45px * var(--k)) 0 / var(--w) var(--h4, 100%) no-repeat;
   }
-  .stop.planned .rail::before { background: repeating-linear-gradient(to bottom, var(--c) 0 12px, transparent 12px 22px); }
-  .stop.planned .node { border-style: dashed; border-width: 3px; }
-  .stop-body { padding: 4px 0 56px; }
-  .when { font-size: 15px; font-weight: 600; color: var(--ink-2); }
-  .stop h3 { margin: 2px 0 0; font-size: 26px; font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; }
-  .org { margin: 2px 0 0; font-size: 18px; font-weight: 600; }
+  .stop.planned .rail::after {
+    -webkit-mask: repeating-linear-gradient(to bottom, #000 0 18px, transparent 18px 28px);
+    mask: repeating-linear-gradient(to bottom, #000 0 18px, transparent 18px 28px);
+  }
+  .cap-node {
+    position: absolute; top: 6px; z-index: 1;
+    left: calc((9px + var(--c0)) * var(--k)); width: calc((var(--cw) + 18px) * var(--k)); height: 28px;
+    border-radius: 14px; background: #fff; border: 4px solid var(--ink);
+  }
+  .stop.planned .cap-node { border-style: dashed; border-width: 3px; }
+  .stop-body { padding: 2px 0 56px; }
+  .stop h3 { margin: 0; font-size: 26px; font-weight: 800; line-height: 1.25; letter-spacing: -0.01em; text-wrap: balance; }
+  .role { margin: 4px 0 0; font-size: 18px; font-weight: 600; }
+  .role .dates, .role .note { font-weight: 400; color: var(--ink-2); }
+  .role .dates { white-space: nowrap; }
   .stop p.sum { margin: 12px 0 0; color: var(--ink-2); max-width: 62ch; }
-  .served { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 14px 0 0; padding: 0; list-style: none; font-size: 14px; font-weight: 600; }
-  .served li { display: inline-flex; align-items: center; gap: 8px; }
-  .served li::before { content: ""; width: 22px; height: 8px; border-radius: 4px; background: var(--c); }
-  .served li.y::before { box-shadow: inset 0 0 0 1.5px var(--yellow-case); }
   .stop.planned h3 a { text-decoration-thickness: 2px; text-underline-offset: 5px; }
 
   /* Projects and open source: the station directory */
@@ -208,7 +236,7 @@
     display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr) 180px; gap: 32px;
     padding: 32px 0; border-top: 2px solid var(--ink); align-items: start;
   }
-  .plate { display: inline-block; max-width: 100%; }
+  .plate { display: inline-block; max-width: 100%; justify-self: start; }
   .plate-name {
     display: block; background: var(--sign); color: #fff; border-radius: 6px 6px 0 0;
     padding: 13px 18px 9px; font-size: 26px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em;
@@ -229,8 +257,9 @@
   .contact { background: var(--sign); color: #fff; }
   .contact .wrap { padding-top: 96px; padding-bottom: 104px; }
   .terminus { width: 132px; height: 64px; display: block; margin-bottom: 28px; }
-  .contact h2 { margin: 0; font-size: clamp(40px, 6vw, 84px); font-weight: 800; line-height: 1.02; letter-spacing: -0.025em; }
-  .contact h2 .hi { display: block; font-size: clamp(20px, 2vw, 28px); font-weight: 600; letter-spacing: 0; color: var(--sign-2); margin-bottom: .35em; }
+  .contact h2 { margin: 0; font-size: clamp(34px, 5vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+  .contact h2 .hi, .contact h2 .en { display: block; }
+  .contact h2 .hi { font-weight: 600; letter-spacing: 0; line-height: 1.2; margin-bottom: .06em; }
   .contact p { margin: 22px 0 36px; max-width: 56ch; font-size: 19px; color: var(--sign-2); }
   .contact .btn-primary { background: #fff; color: var(--ink); border-color: #fff; }
   .contact .btn-primary:hover { background: #e6e8eb; border-color: #e6e8eb; }
@@ -247,6 +276,7 @@
 
   /* Motion: the map draws once; the next-station ring blinks like a carriage LED */
   @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
     .ln .solid { stroke-dasharray: 1 1; animation: draw 1.5s var(--ease-out) var(--d, 0s) both; }
     .ln .dash { animation: fade .7s ease-out 1.5s both; }
     .ring { animation: blink 1.1s ease-in-out 2s 4; }
@@ -261,7 +291,7 @@
     .copy { position: static; width: auto; max-width: 640px; padding: 24px 24px 8px; }
     .sign-body { gap: 16px; padding: 16px 18px 14px; }
     .sign-photo { width: 92px; }
-    .sign h1 .en { font-size: clamp(30px, 8.4vw, 48px); }
+    .sign h1 .hi, .sign h1 .en { font-size: clamp(24px, 6.6vw, 40px); }
     .map-frame {
       position: relative; overflow-x: auto; overscroll-behavior-x: contain;
       scrollbar-width: thin; scrollbar-color: var(--ink) var(--wash);
@@ -281,9 +311,7 @@
     .key { margin: 12px 16px 24px; }
     .key-list { grid-template-columns: 1fr; }
     section.block { padding: 72px 0; }
-    .stop { grid-template-columns: 52px minmax(0, 1fr); }
-    .rail::before { left: 19px; }
-    .node { left: 10px; }
+    .stop { --k: .8; }
     .stop h3 { font-size: 22px; }
     .block-head { display: block; }
     .entry { grid-template-columns: 1fr; gap: 16px; }
@@ -348,6 +376,7 @@
         <div class="map-frame">
           <svg class="map" viewBox="0 0 1440 800" aria-labelledby="map-title map-desc">
             <title id="map-title">Career network map</title>
+            <defs><clipPath id="airbnb-plate"><rect x="1234" y="318" width="183" height="104" rx="8"/></clipPath></defs>
             <desc id="map-desc">A diagrammatic metro map. Five lines (Platform and DevOps, Backend, Reliability and Security, Mobile, and Foundations) connect employers and projects from 2013 to 2025 and converge at Airbnb Payments. Dashed extensions continue to the next station: your team.</desc>
 
             <g class="lines">
@@ -397,7 +426,7 @@
               <g class="st" data-lines="red">
                 <a href="#proj-invest-haryana" aria-label="Invest Haryana project">
                   <rect class="tick-red" x="916" y="318" width="8" height="22"/>
-                  <text class="lbl" x="920" y="306" text-anchor="middle">Invest Haryana</text>
+                  <text class="lbl" x="908" y="306" text-anchor="end">Invest Haryana</text>
                 </a>
               </g>
               <g class="st" data-lines="blue violet">
@@ -429,10 +458,16 @@
               </g>
               <g class="st" data-lines="red blue violet">
                 <a href="#exp-altimetrik" aria-label="Airbnb Payments via Altimetrik, 2022 to 2025, 70 plus microservices">
-                  <rect class="cap major" x="1196" y="436" width="28" height="88" rx="14"/>
-                  <text class="lbl big" x="1232" y="372">Airbnb Payments</text>
-                  <text class="lbl-sub" x="1232" y="395">via Altimetrik · 2022–25</text>
-                  <text class="lbl-sub" x="1232" y="416">70+ microservices</text>
+                  <rect class="cap major" x="1192" y="428" width="36" height="104" rx="18"/>
+                  <g clip-path="url(#airbnb-plate)">
+                    <rect x="1234" y="318" width="183" height="104" fill="#141414"/>
+                    <rect x="1234" y="414" width="61" height="8" fill="#1263b5"/>
+                    <rect x="1295" y="414" width="61" height="8" fill="#d42a2a"/>
+                    <rect x="1356" y="414" width="61" height="8" fill="#7b2d8e"/>
+                  </g>
+                  <text class="plate-t" x="1247" y="351">Airbnb Payments</text>
+                  <text class="plate-s" x="1247" y="374">via Altimetrik · 2022–25</text>
+                  <text class="plate-s" x="1247" y="396">70+ microservices</text>
                 </a>
               </g>
               <g class="st" data-lines="red blue violet">
@@ -446,7 +481,7 @@
             </g>
           </svg>
         </div>
-        <p class="map-hint">Swipe sideways to explore the map.</p>
+        <p class="map-hint">Swipe sideways to explore the map; the full route is below.</p>
 
         <div class="key">
           <div class="key-head">
@@ -469,93 +504,75 @@
       <div class="wrap route-grid">
         <div class="route-aside">
           <h2 id="experience-title">Experience</h2>
-          <p class="intro">Eight years of building software and running the platforms it ships on, newest first. The colour under each stop shows which lines it served.</p>
+          <p class="intro">Eight years of building software and running the platforms it ships on, newest first. The rails at each stop show the lines it served, left to right:</p>
+          <ul class="rail-key">
+            <li style="--c: var(--blue)">Platform &amp; DevOps</li>
+            <li style="--c: var(--red)">Backend</li>
+            <li style="--c: var(--violet)">Reliability &amp; security</li>
+            <li style="--c: var(--green)">Foundations</li>
+          </ul>
         </div>
         <ol class="route">
-          <li class="stop planned" style="--c: var(--blue)">
-            <div class="rail" aria-hidden="true"><span class="node"></span></div>
+          <li class="stop planned" style="--b1: var(--blue); --b2: var(--red); --b3: var(--violet); --c0: 0px; --cw: 40px">
+            <div class="rail" aria-hidden="true"><span class="cap-node"></span></div>
             <div class="stop-body">
-              <div class="when">Next</div>
               <h3><a href="#contact">Your team</a></h3>
-              <p class="sum">Open to full-time roles and consulting on platform engineering, DevOps and backend systems.</p>
+              <p class="role">Next station&nbsp;· <span class="note">open to full-time roles and consulting</span></p>
+              <p class="sum">Platform engineering, DevOps and backend systems. Email is the fastest way to reach me.</p>
             </div>
           </li>
-          <li class="stop" id="exp-altimetrik" style="--c: var(--blue)">
-            <div class="rail" aria-hidden="true"><span class="node"></span></div>
+          <li class="stop" id="exp-altimetrik" style="--a1: var(--blue); --a2: var(--red); --a3: var(--violet); --b1: var(--blue); --b3: var(--violet); --c0: 0px; --cw: 40px">
+            <div class="rail" aria-hidden="true"><span class="cap-node"></span></div>
             <div class="stop-body">
-              <div class="when">Jan 2022 – Aug 2025</div>
-              <h3>Product and Platform Engineer</h3>
-              <p class="org">Altimetrik India, for Airbnb</p>
+              <h3>Altimetrik India, for Airbnb</h3>
+              <p class="role">Product and Platform Engineer&nbsp;· <span class="dates">Jan 2022 – Aug 2025</span></p>
               <p class="sum">Worked full-time with Airbnb’s US payments engineering team, keeping a reliable cloud environment for more than 70 microservices, and monitoring and debugging environment issues together.</p>
-              <ul class="served" aria-label="Lines">
-                <li style="--c: var(--blue)">Platform &amp; DevOps</li>
-                <li style="--c: var(--red)">Backend</li>
-                <li style="--c: var(--violet)">Reliability &amp; security</li>
-              </ul>
+              <p class="sr-only">Lines: Platform and DevOps, Backend, Reliability and security.</p>
             </div>
           </li>
-          <li class="stop" id="exp-hartron-lead" style="--c: var(--blue)">
-            <div class="rail" aria-hidden="true"><span class="node"></span></div>
+          <li class="stop" id="exp-hartron-lead" style="--a1: var(--blue); --a3: var(--violet); --b1: var(--blue); --b3: var(--violet); --c0: 0px; --cw: 40px">
+            <div class="rail" aria-hidden="true"><span class="cap-node"></span></div>
             <div class="stop-body">
-              <div class="when">Jan 2021 – Jan 2022</div>
-              <h3>DevOps Lead</h3>
-              <p class="org">HSEDC (HARTRON), India</p>
+              <h3>HSEDC (HARTRON), India</h3>
+              <p class="role">DevOps Lead&nbsp;· <span class="dates">Jan 2021 – Jan 2022</span></p>
               <p class="sum">Led the DevOps division, created orchestration processes, and implemented server-side security and monitoring tools.</p>
-              <ul class="served" aria-label="Lines">
-                <li style="--c: var(--blue)">Platform &amp; DevOps</li>
-                <li style="--c: var(--violet)">Reliability &amp; security</li>
-              </ul>
+              <p class="sr-only">Lines: Platform and DevOps, Reliability and security.</p>
             </div>
           </li>
-          <li class="stop" id="exp-srit" style="--c: var(--violet)">
-            <div class="rail" aria-hidden="true"><span class="node"></span></div>
+          <li class="stop" id="exp-srit" style="--a1: var(--blue); --a3: var(--violet); --b1: var(--blue); --c0: 0px; --cw: 40px">
+            <div class="rail" aria-hidden="true"><span class="cap-node"></span></div>
             <div class="stop-body">
-              <div class="when">Jan 2020 – Dec 2020</div>
-              <h3>DevOps and Full-Stack Developer</h3>
-              <p class="org">SRIT, India</p>
+              <h3>SRIT, India</h3>
+              <p class="role">DevOps and Full-Stack Developer&nbsp;· <span class="dates">Jan 2020 – Dec 2020</span></p>
               <p class="sum">Maintained the company’s cloud infrastructure, worked on establishing a data centre in India, and secured the infrastructure against cyber threats.</p>
-              <ul class="served" aria-label="Lines">
-                <li style="--c: var(--blue)">Platform &amp; DevOps</li>
-                <li style="--c: var(--violet)">Reliability &amp; security</li>
-              </ul>
+              <p class="sr-only">Lines: Platform and DevOps, Reliability and security.</p>
             </div>
           </li>
-          <li class="stop" id="exp-hartron-dev" style="--c: var(--red)">
-            <div class="rail" aria-hidden="true"><span class="node"></span></div>
+          <li class="stop" id="exp-hartron-dev" style="--a1: var(--blue); --b2: var(--red); --h2: 36px; --b4: var(--green); --c0: 0px; --cw: 55px">
+            <div class="rail" aria-hidden="true"><span class="cap-node"></span></div>
             <div class="stop-body">
-              <div class="when">Jul 2017 – Jan 2020</div>
-              <h3>Full-Stack Developer</h3>
-              <p class="org">HSEDC (HARTRON), India</p>
+              <h3>HSEDC (HARTRON), India</h3>
+              <p class="role">Full-Stack Developer&nbsp;· <span class="dates">Jul 2017 – Jan 2020</span></p>
               <p class="sum">Administered the company’s networks and led a team of four, driving adoption of new technologies and tools.</p>
-              <ul class="served" aria-label="Lines">
-                <li style="--c: var(--red)">Backend</li>
-                <li style="--c: var(--blue)">Platform &amp; DevOps</li>
-              </ul>
+              <p class="sr-only">Lines: Platform and DevOps, Backend, Foundations.</p>
             </div>
           </li>
-          <li class="stop" id="exp-drdo" style="--c: var(--green)">
-            <div class="rail" aria-hidden="true"><span class="node"></span></div>
+          <li class="stop" id="exp-drdo" style="--a4: var(--green); --b4: var(--green); --c0: 45px; --cw: 10px">
+            <div class="rail" aria-hidden="true"><span class="cap-node"></span></div>
             <div class="stop-body">
-              <div class="when">2016</div>
-              <h3>Intern</h3>
-              <p class="org">DRDO, Solid State Physics Laboratory</p>
+              <h3>DRDO, Solid State Physics Laboratory</h3>
+              <p class="role">Intern&nbsp;· <span class="dates">2016</span></p>
               <p class="sum">Selected for the DRDO summer training programme; worked with senior scientists and earned a certificate for an independent project.</p>
-              <ul class="served" aria-label="Lines">
-                <li style="--c: var(--green)">Foundations</li>
-              </ul>
+              <p class="sr-only">Lines: Foundations.</p>
             </div>
           </li>
-          <li class="stop" id="exp-gjust" style="--c: var(--green)">
-            <div class="rail" aria-hidden="true"><span class="node"></span></div>
+          <li class="stop" id="exp-gjust" style="--a4: var(--green); --b2: var(--red); --h2: 36px; --c0: 15px; --cw: 40px">
+            <div class="rail" aria-hidden="true"><span class="cap-node"></span></div>
             <div class="stop-body">
-              <div class="when">2013 – 2017</div>
-              <h3>B.Tech, Computer Science and Engineering</h3>
-              <p class="org">Guru Jambheshwar University of Science &amp; Technology, Hisar</p>
+              <h3>Guru Jambheshwar University of Science &amp; Technology, Hisar</h3>
+              <p class="role">B.Tech, Computer Science and Engineering&nbsp;· <span class="dates">2013 – 2017</span></p>
               <p class="sum">Committee member of the GJUST Devs Club, serving as Manager and Instructor.</p>
-              <ul class="served" aria-label="Lines">
-                <li style="--c: var(--green)">Foundations</li>
-                <li style="--c: var(--red)">Backend</li>
-              </ul>
+              <p class="sr-only">Lines: Foundations, Backend.</p>
             </div>
           </li>
         </ol>
@@ -699,12 +716,12 @@
       <div class="stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
       <div class="wrap">
         <svg class="terminus" viewBox="0 0 132 64" aria-hidden="true">
-          <path d="M0 18 H110" stroke="#d42a2a" stroke-width="10" stroke-dasharray="10 9"/>
-          <path d="M0 32 H110" stroke="#1263b5" stroke-width="10" stroke-dasharray="10 9"/>
-          <path d="M0 46 H110" stroke="#7b2d8e" stroke-width="10" stroke-dasharray="10 9"/>
+          <path d="M0 18 H110" stroke="#d42a2a" stroke-width="10" stroke-dasharray="18 7"/>
+          <path d="M0 32 H110" stroke="#1263b5" stroke-width="10" stroke-dasharray="18 7"/>
+          <path d="M0 46 H110" stroke="#7b2d8e" stroke-width="10" stroke-dasharray="18 7"/>
           <rect x="102" y="4" width="22" height="56" rx="11" fill="#141414" stroke="#fff" stroke-width="3" stroke-dasharray="5 4"/>
         </svg>
-        <h2 id="contact-title"><span class="hi" lang="hi">अगला स्टेशन</span>Next station: your team</h2>
+        <h2 id="contact-title"><span class="hi" lang="hi">अगला स्टेशन: आपकी टीम</span><span class="en">Next station: your team</span></h2>
         <p>Open to full-time roles and consulting on platform engineering, DevOps and backend systems. Email is the fastest way to reach me.</p>
         <div class="actions">
           <a class="btn btn-primary" href="mailto:govindbhardwaj@outlook.com">
@@ -765,10 +782,8 @@
       var svg = frame.querySelector('svg');
       var narrow = window.matchMedia('(max-width: 1099px)');
       function fitMap() {
-        svg.setAttribute('viewBox', narrow.matches ? '0 215 1440 585' : '0 0 1440 800');
-        if (narrow.matches) {
-          frame.scrollLeft = (1210 / 1440) * svg.getBoundingClientRect().width - frame.clientWidth / 2;
-        }
+        svg.setAttribute('viewBox', narrow.matches ? '0 215 1440 400' : '0 0 1440 800');
+        if (narrow.matches) frame.scrollLeft = frame.scrollWidth;
       }
       fitMap();
       if (narrow.addEventListener) narrow.addEventListener('change', fitMap);

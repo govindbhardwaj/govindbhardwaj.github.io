@@ -1,0 +1,11 @@
+<!doctype html><meta charset="utf-8"><style>html,body{margin:0;overflow:hidden}iframe{border:0;display:block}</style>
+<iframe id="f"></iframe>
+<script>
+  // Review harness: shows a page at a given width/height, scrolled to y, for captures taller pages need in parts.
+  var p = new URLSearchParams(location.search), f = document.getElementById('f');
+  f.width = p.get('w') || 1440; f.height = p.get('h') || 6000;
+  f.addEventListener('load', function () {
+    setTimeout(function () { f.contentWindow.scrollTo({ top: +(p.get('y') || 0), behavior: 'instant' }); }, 1500);
+  });
+  f.src = p.get('u') || '/';
+</script>

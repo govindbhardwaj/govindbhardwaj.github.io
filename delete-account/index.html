@@ -6,26 +6,39 @@
 <title>Delete Your Account — Govind Bhardwaj</title>
 <meta name="description" content="How to delete your account and data for mobile apps published by Govind Bhardwaj on Google Play and the Apple App Store, what is deleted, what is kept and for how long.">
 <link rel="canonical" href="https://govindbhardwaj.github.io/delete-account/">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/images/favicon.ico">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/mukta@5.2.8/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/mukta@5.2.8/600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/mukta@5.2.8/800.css">
 <link rel="stylesheet" href="/assets/legal.css">
 </head>
 <body>
 
-  <nav class="navbar">
-    <a href="/" class="nav-brand">
-      <span class="nav-logo">GB</span>
-      <span class="nav-sitename">govindbhardwaj.github.io</span>
-    </a>
-    <div class="nav-links">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/privacy-policy/" class="nav-link">Privacy</a>
-      <a href="/delete-account/" class="nav-link" aria-current="page">Delete account</a>
+  <header class="site-head">
+    <div class="bar">
+      <a class="brand" href="/" aria-label="Govind Bhardwaj, home">
+        <svg viewBox="0 0 30 30" aria-hidden="true">
+          <path d="M0 11 H30" stroke="#1263b5" stroke-width="5"/>
+          <path d="M0 19 H30" stroke="#d42a2a" stroke-width="5"/>
+          <rect x="9" y="4" width="12" height="22" rx="6" fill="#fff" stroke="#141414" stroke-width="3"/>
+        </svg>
+        Govind Bhardwaj
+      </a>
+      <nav class="nav" aria-label="Site">
+        <a href="/" style="--c: var(--blue)">Home</a>
+        <a href="/privacy-policy/" style="--c: var(--red)">Privacy Policy</a>
+        <a href="/delete-account/" style="--c: var(--violet)" aria-current="page">Delete account</a>
+        <a class="btn btn-primary" href="mailto:govindbhardwaj@outlook.com">Email me</a>
+      </nav>
     </div>
-  </nav>
+    <div class="stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  </header>
 
   <header class="legal-header">
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span class="breadcrumb-sep" aria-hidden="true">/</span><a href="/privacy-policy/">Privacy Policy</a><span class="breadcrumb-sep" aria-hidden="true">/</span><span aria-current="page">Delete account</span></nav>
-    <h1 class="legal-title">Delete your account</h1>
+    <div class="title-sign"><h1 class="legal-title">Delete your account</h1></div>
     <p class="legal-lede">
       You can ask for your account and its data to be deleted from any app published by <strong>Govind Bhardwaj</strong> on Google Play or the Apple App Store. You can do it inside the app, or from this page if you no longer have the app installed.
     </p>
@@ -57,7 +70,7 @@
               <li>Include the app's name and your account email or username.</li>
               <li>We confirm that the account is yours, then delete it and email you when it is done.</li>
             </ol>
-            <a class="btn-primary" href="mailto:govindbhardwaj@outlook.com?subject=Account%20deletion%20request&amp;body=App%20name%3A%20%0AAccount%20email%20or%20username%3A%20%0APlatform%20(Android%20or%20iOS)%3A%20">Email a deletion request</a>
+            <a class="btn btn-primary" href="mailto:govindbhardwaj@outlook.com?subject=Account%20deletion%20request&amp;body=App%20name%3A%20%0AAccount%20email%20or%20username%3A%20%0APlatform%20(Android%20or%20iOS)%3A%20">Email a deletion request</a>
           </div>
         </div>
         <p>If you signed in with Apple using “Hide My Email”, send the request from any address and include the relay address shown in your Apple ID settings, so we can find your account.</p>
@@ -71,10 +84,10 @@
               <tr><th>Data</th><th>What happens</th></tr>
             </thead>
             <tbody>
-              <tr><td>Profile and sign-in details (name, email, profile photo, account ID)</td><td>Permanently deleted</td></tr>
-              <tr><td>Content you created (saved items, bookmarks, posts, uploads)</td><td>Permanently deleted</td></tr>
-              <tr><td>Preferences and settings</td><td>Permanently deleted</td></tr>
-              <tr><td>Push tokens and device identifiers linked to your account</td><td>Permanently deleted</td></tr>
+              <tr><td data-label="Data">Profile and sign-in details (name, email, profile photo, account ID)</td><td data-label="What happens">Permanently deleted</td></tr>
+              <tr><td data-label="Data">Content you created (saved items, bookmarks, posts, uploads)</td><td data-label="What happens">Permanently deleted</td></tr>
+              <tr><td data-label="Data">Preferences and settings</td><td data-label="What happens">Permanently deleted</td></tr>
+              <tr><td data-label="Data">Push tokens and device identifiers linked to your account</td><td data-label="What happens">Permanently deleted</td></tr>
             </tbody>
           </table>
         </div>
@@ -88,11 +101,11 @@
               <tr><th>Data</th><th>Why it is kept</th><th>How long</th></tr>
             </thead>
             <tbody>
-              <tr><td>Encrypted backups</td><td>Backups are rotated on a schedule and cannot be edited one record at a time</td><td>Purged within 90 days</td></tr>
-              <tr><td>Purchase records</td><td>Required by tax and accounting law</td><td>As long as the law requires</td></tr>
-              <tr><td>Crash reports</td><td>Linked to a random installation ID, not to your account</td><td>Deleted automatically after 90 days</td></tr>
-              <tr><td>Aggregated statistics</td><td>Anonymous totals that cannot identify you</td><td>May be kept indefinitely</td></tr>
-              <tr><td>Record of your deletion request (email address and date)</td><td>To show that we completed your request</td><td>12 months</td></tr>
+              <tr><td data-label="Data">Encrypted backups</td><td data-label="Why it is kept">Backups are rotated on a schedule and cannot be edited one record at a time</td><td data-label="How long">Purged within 90 days</td></tr>
+              <tr><td data-label="Data">Purchase records</td><td data-label="Why it is kept">Required by tax and accounting law</td><td data-label="How long">As long as the law requires</td></tr>
+              <tr><td data-label="Data">Crash reports</td><td data-label="Why it is kept">Linked to a random installation ID, not to your account</td><td data-label="How long">Deleted automatically after 90 days</td></tr>
+              <tr><td data-label="Data">Aggregated statistics</td><td data-label="Why it is kept">Anonymous totals that cannot identify you</td><td data-label="How long">May be kept indefinitely</td></tr>
+              <tr><td data-label="Data">Record of your deletion request (email address and date)</td><td data-label="Why it is kept">To show that we completed your request</td><td data-label="How long">12 months</td></tr>
             </tbody>
           </table>
         </div>
